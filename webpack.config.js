@@ -13,7 +13,12 @@ module.exports = {
   },
 
   devServer: {
-    static: "./dist",
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    port: 8080,
+    open: true,
+    hot: true,
   },
 
   plugins: [
