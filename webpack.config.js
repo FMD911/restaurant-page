@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-
   entry: "./src/index.js",
 
   output: {
@@ -19,6 +18,15 @@ module.exports = {
     port: 8080,
     open: true,
     hot: true,
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      }
+    ]
   },
 
   plugins: [

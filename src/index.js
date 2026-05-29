@@ -1,8 +1,8 @@
-console.log("JS loaded");
-
+import "./style.css";
+import { createNav } from "./navbar.js";
 import { loadHome } from "./home.js";
-
-console.log("App started");
+import { loadMenu } from "./menu.js";
+import { loadContact } from "./contact.js";
 
 const content = document.getElementById("content");
 
@@ -10,9 +10,14 @@ function clearContent() {
   content.innerHTML = "";
 }
 
-function renderHome() {
+function renderPage(page) {
   clearContent();
-  content.appendChild(loadHome());
+
+  if (page === "home") content.appendChild(loadHome());
+  if (page === "menu") content.appendChild(loadMenu());
+  if (page === "contact") content.appendChild(loadContact());
 }
 
-renderHome();
+document.body.prepend(createNav(renderPage));
+
+renderPage("home");
