@@ -1,22 +1,30 @@
 export function createNav(onChangePage) {
   const nav = document.createElement("nav");
 
-  const homeBtn = document.createElement("button");
-  homeBtn.textContent = "Home";
+  const pages = ["home", "menu", "contact"];
+  let active = "home";
 
-  const menuBtn = document.createElement("button");
-  menuBtn.textContent = "Menu";
+  pages.forEach(page => {
+    const btn = document.createElement("button");
+    btn.textContent = page.toUpperCase();
+    btn.dataset.page = page;
 
-  const contactBtn = document.createElement("button");
-  contactBtn.textContent = "Contact";
+    btn.addEventListener("click", () => {
+      active = page;
+      onChangePage(page);
+      updateActive();
+    });
 
-  homeBtn.addEventListener("click", () => onChangePage("home"));
-  menuBtn.addEventListener("click", () => onChangePage("menu"));
-  contactBtn.addEventListener("click", () => onChangePage("contact"));
+    nav.appendChild(btn);
+  });
 
-  nav.appendChild(homeBtn);
-  nav.appendChild(menuBtn);
-  nav.appendChild(contactBtn);
+  function updateActive() {
+    nav.querySelectorAll("button").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.page === active);
+    });
+  }
+
+  updateActive();
 
   return nav;
 }

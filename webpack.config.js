@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
+
   entry: "./src/index.js",
 
   output: {
@@ -12,12 +13,10 @@ module.exports = {
   },
 
   devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    port: 8080,
+    static: "./dist",
     open: true,
     hot: true,
+    port: 8080,
   },
 
   module: {

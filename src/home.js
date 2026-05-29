@@ -1,18 +1,27 @@
 export function loadHome() {
   const container = document.createElement("div");
 
+  const hero = document.createElement("div");
+  hero.classList.add("hero");
+
   const title = document.createElement("h1");
-  title.textContent = "🌮 El Odin Mexican Restaurant";
+  title.textContent = "El Odin Mexican Restaurant";
 
   const subtitle = document.createElement("p");
-  subtitle.textContent = "Best tacos, burritos, and vibes in the world.";
+  subtitle.textContent = "Fresh, authentic Mexican food every day";
 
-  const info = document.createElement("p");
-  info.textContent = "Fresh food. Clean code. Zero bugs (hopefully).";
+  const highlight = document.createElement("p");
+  highlight.textContent = "Tacos • Burritos • Nachos • Churros";
 
-  container.appendChild(title);
-  container.appendChild(subtitle);
-  container.appendChild(info);
+  const btn = document.createElement("button");
+  btn.textContent = "View Menu";
+
+  btn.addEventListener("click", () => {
+    document.querySelector("nav button:nth-child(2)").click();
+  });
+
+  hero.append(title, subtitle, highlight, btn);
+  container.appendChild(hero);
 
   return container;
 }

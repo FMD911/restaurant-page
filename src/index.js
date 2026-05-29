@@ -1,23 +1,26 @@
+console.log("VERSION 999 TEST");
+
 import "./style.css";
 import { createNav } from "./navbar.js";
 import { loadHome } from "./home.js";
 import { loadMenu } from "./menu.js";
 import { loadContact } from "./contact.js";
 
-const content = document.getElementById("content");
+const content = document.createElement("div");
+content.id = "content";
+document.body.appendChild(content);
 
-function clearContent() {
+function render(page) {
   content.innerHTML = "";
+
+  const pages = {
+    home: loadHome,
+    menu: loadMenu,
+    contact: loadContact,
+  };
+
+  content.appendChild(pages[page]());
 }
 
-function renderPage(page) {
-  clearContent();
-
-  if (page === "home") content.appendChild(loadHome());
-  if (page === "menu") content.appendChild(loadMenu());
-  if (page === "contact") content.appendChild(loadContact());
-}
-
-document.body.prepend(createNav(renderPage));
-
-renderPage("home");
+document.body.prepend(createNav(render));
+render("home");
